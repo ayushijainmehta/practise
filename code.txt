@@ -1,0 +1,63 @@
+import java.util.*;
+public class HelloWorld{
+
+     public static void main(String []args){
+          Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+           List<String> output = new ArrayList<String>();
+           for(int i=0;i<t;i++)
+     {
+        List<String> prodDetails = new ArrayList<String>();
+              int c=sc.nextInt();
+              sc.nextLine();
+                for (int j = 0; j < c; j++)
+                {
+                    prodDetails.add(sc.nextLine());
+                  
+                    
+                }
+                GetTopProductDetails(prodDetails, output);
+     }
+      System.out.println("Initial Mappings are: " + output); 
+              
+     }
+
+ private static List<String> GetTopProductDetails(List<String> prodDetails, List<String> output)
+        { 
+            HashMap<String,Integer> keyValuePairs = new HashMap< String,Integer>();
+        
+              for (int i = 0; i < prodDetails.size(); i++)
+            {
+                 String[] x = new String[] {"0","0"};
+               
+                 if (prodDetails.get(i).toLowerCase() != "top")
+                {
+        String s=prodDetails.get(i);
+         x= s.split(" ");
+                    String P = x[0];
+                System.out.println(x[0]);
+                 int U = Integer.parseInt(x[1]);
+                 System.out.println(U);
+                   if (keyValuePairs.containsKey(P))
+                    {
+                       
+           int unit=keyValuePairs.get(P);
+                        keyValuePairs.put(P,unit+U);
+                    }
+                    else
+                    {
+                        keyValuePairs.put(P,U);
+                    }
+                    
+                }
+                else
+                {
+                 for ( String key : keyValuePairs.keySet() ) {
+     output.add(key);
+}   
+                }
+            }
+            return output;
+          
+        }
+}
